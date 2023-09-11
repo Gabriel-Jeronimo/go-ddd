@@ -1,6 +1,7 @@
 package services
 
 import (
+	"github.com/google/uuid"
 	"github.com/percybolmer/ddd-go/domain/customer"
 	"github.com/percybolmer/ddd-go/domain/customer/memory"
 )
@@ -38,7 +39,7 @@ func WithMemoryCustomerRepository() OrderConfiguration {
 }
 
 func (o *OrderService) CreateOrder(customerID uuid.UUID, productsIDs []uuid.UUID) error {
-	c, err := o.customers.Get(customerId)
+	_, err := o.customers.Get(customerID)
 
 	if err != nil {
 		return err
